@@ -8,6 +8,8 @@ const app = express();
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+app.use(express.static('assets'))
+
 // view engine setup
 app.set('views', path.join(dirname, 'views')); // this is the folder where we keep our pug files
 app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work great too
