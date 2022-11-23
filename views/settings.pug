@@ -2,18 +2,32 @@ doctype html
 head
     style
         include ../public/dist/style.css
-        include https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
 
 
 html(lang='en')
 
 body
-    div(class='bg-img')
-        div(class='box')
-            span(class='icon-text')
-                span(class='icon'): i(class='fas fa-arrow-right')
+    div(class='bg-img p-1')
+        div(class='container')
+            a(href='../')
+                span(class='icon-text is-size-5 has-text-light mb-2')
+                span(class='icon'): i(class='fa fa-arrow-left')
                 span settings
+
+        div(class='has-background-grey-lighter box p-2 is-flex')
+            span(class='is-size-7') change your character
+            select(class='is-flex-no-wrap')
+                option(value='0')
+                    | panda
+                option(value='1')
+                    | rabbit
+                option(value='2')
+                    | whale
+                option(value='3')
+                    | whale 6
+                option(value='4')
+                    | whale 5
         div(class='box')
-            hi
-        div(class='box')
-            hi
+    script
+        include js/api.js
