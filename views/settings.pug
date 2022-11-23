@@ -9,6 +9,7 @@ html(lang='en')
 
 body
     div(class='bg-img p-1')
+        img(src=`${personaUrl}`, class='logo' id='personaImg')
         div(class='container')
             a(href='../')
                 span(class='icon-text is-size-5 has-text-light mb-2')
@@ -17,17 +18,26 @@ body
 
         div(class='has-background-grey-lighter box p-2 is-flex')
             span(class='is-size-7') change your character
-            select(class='is-flex-no-wrap')
-                option(value='0')
+            select(class='is-flex-no-wrap' id='persona')
+                option(value='panda')
                     | panda
-                option(value='1')
+                option(value='rabbit')
                     | rabbit
-                option(value='2')
+                option(value='whale')
                     | whale
-                option(value='3')
-                    | whale 6
-                option(value='4')
-                    | whale 5
-        div(class='box')
+                option(value='cat')
+                    | cat
+                option(value='snake')
+                    | snake
+                option(value='sloth')
+                    | sloth
+                option(value='penguin')
+                    | penguin
+                option(value='dog')
+                    | dog
+        div(class='has-background-grey-lighter box p-2 is-flex')
+            div(class='is-flex-no-wrap')
+                input(type='text' id='username' class='input is-small' placeholder='username')
+                button(class='button ') save
     script
-        include js/api.js
+        include js/settings.js
