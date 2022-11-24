@@ -2,9 +2,10 @@
 import dotenv from 'dotenv';
 import app from './app.js';
 
+
 dotenv.config({ path: 'variables.env' });
 
-app.set('port', process.env.PORT || 7777);
+app.set('port', process.env.PORT || 50000);
 const server = app.listen(app.get('port'), () => {
     console.log(`Express running → PORT ${server.address().port}`);
 });

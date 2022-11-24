@@ -2,11 +2,42 @@ doctype html
 head
     style
         include ../public/dist/style.css
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+
 
 html(lang='en')
-    head
-        title Hello, World!
-    body
-        h1(class="is-size-7") homepage
-        div.remark
-            p Pug rocks!
+
+body
+    div(class='bg-img p-1')
+        img(src=`${personaUrl}`, class='logo' id='personaImg')
+        div(class='container')
+            a(href='../')
+                span(class='icon-text is-size-5 has-text-light mb-2')
+                span(class='icon'): i(class='fa fa-arrow-left')
+                span settings
+
+        div(class='has-background-grey-lighter box p-2 is-flex')
+            span(class='is-size-7') change your character
+            select(class='is-flex-no-wrap' id='persona')
+                option(value='panda')
+                    | panda
+                option(value='rabbit')
+                    | rabbit
+                option(value='whale')
+                    | whale
+                option(value='cat')
+                    | cat
+                option(value='snake')
+                    | snake
+                option(value='sloth')
+                    | sloth
+                option(value='penguin')
+                    | penguin
+                option(value='dog')
+                    | dog
+        div(class='has-background-grey-lighter box p-2 is-flex')
+            div(class='is-flex-no-wrap')
+                input(type='text' id='username' class='input is-small' placeholder='username')
+                button(class='button ') save
+    script
+        include js/settings.js
