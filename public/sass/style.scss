@@ -1,0 +1,12 @@
+@charset "utf-8";
+@import '../../node_modules/bulma/bulma.sass';
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+$footer-background-color: black;
+
+.bg-img {
+  background: url('../assets/backgroundDark.jpg') no-repeat;
+  background-size: cover;
+  width: 207px;
+  height: 448px;
+}
