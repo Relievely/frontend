@@ -22,8 +22,7 @@ export default function Home() {
 console.log()
   return (
     <View style={styles.container}>
-      <ImageBackground source={source.uri.default.src} resizeMode="cover" style={styles.image}>
-        <Text style={styles.text}>Inside</Text>
+      <ImageBackground source={source.uri.default.src} style={styles.image}>
       </ImageBackground>
     </View>
   );
@@ -36,6 +35,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "center"
+
   },
   text: {
     color: "white",
