@@ -31,9 +31,9 @@ const fetcher = () =>
   fetch("/api/scores/list").then((response) => response.json());
 
 export default function Home() {
-  const { data, mutate } = useSWR("scores", fetcher);
-  const [name, setName] = useState("Leigh");
-  const [value, setValue] = useState("3.14");
+  const { data, mutate } = useSWR("", fetcher);
+  const [name, setName] = useState("");
+  const [value, setValue] = useState("");
 
   return (
     <View style={styles.container}>
