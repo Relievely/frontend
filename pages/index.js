@@ -7,12 +7,15 @@ import {
   TextInput,
   Button,
   ImageBackground,
-} from "react-native";
+} from "react-native-web";
 import * as path from "path";
 import { SafeAreaView } from "react-native-web";
+import sendUsername from "./api/settings/api";
 
 const fetcher = () =>
   fetch("/api/scores/list").then((response) => response.json());
+
+let displayname;
 
 export default function Home() {
   const { data, mutate } = useSWR("", fetcher);
@@ -20,15 +23,20 @@ export default function Home() {
   const [value, setValue] = useState("");
   const source={ uri: require('../public/backgroundDark.jpg') };
   const initialUsername = "Guest"; //the username the user fills in in the guide
-  const [userName, onChangeText] = React.useState(initialUsername);
-  console.log(userName)
+  const [username, onChangeText] = React.useState(initialUsername);
+
+  displayname = sendUsername(username);
+
   return (
     <ImageBackground source={source.uri.default.src} style={styles.bgImg}>
     <SafeAreaView>
+      <text>
+        {/* {displayname} */}
+      </text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
-        value={userName}
+        value={username}
       />
     </SafeAreaView>
     </ImageBackground>
