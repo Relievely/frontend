@@ -1,7 +1,7 @@
 export default async function sendUsername(username) {
-  if (username === "") {
-    username = "Guest"
-  }
+  // if (username === "") {
+  //   username = "Guest"
+  // }
   fetch(`http://localhost:30000/username/${username}`, {
     method: "put",
     headers: {
@@ -17,6 +17,6 @@ export default async function sendUsername(username) {
         }
       })
         .then((response) => response.json())
-        .then(({ data }) => console.log(data));
+        .then((data) => { console.log(data) })
     });
 }

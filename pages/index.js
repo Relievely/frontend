@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import {
+  ActivityIndicator,
+  FlatList,
   StyleSheet,
   View,
   Text,
@@ -18,23 +20,34 @@ const fetcher = () =>
 let displayname;
 
 export default function Home() {
-  const { data, mutate } = useSWR("", fetcher);
-  const [name, setName] = useState("");
-  const [value, setValue] = useState("");
-  const source={ uri: require('../public/backgroundDark.jpg') };
-  const initialUsername = "Guest"; //the username the user fills in in the guide
-  const [username, onChangeText] = React.useState(initialUsername);
 
-  displayname = sendUsername(username);
+  const [data, setData] = useState([]);
+  const source={ uri: require('../public/backgroundDark.jpg') };
+  const [username, onChangeText] = useState();
+
+  const getUsername = async () => {
+    try {
+      const response = await fetch('http://localhost:30000/username');
+      const json = await response.json();
+      setData(json.data.value);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getUsername();
+  }, []);
+
+  sendUsername(username);
 
   return (
     <ImageBackground source={source.uri.default.src} style={styles.bgImg}>
     <SafeAreaView>
-      <text>
-        {/* {displayname} */}
-      </text>
+      <Text>
+        {data}
+      </Text>
       <TextInput
-        style={styles.input}
         onChangeText={onChangeText}
         value={username}
       />
