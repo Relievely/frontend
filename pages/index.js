@@ -1,80 +1,98 @@
-import React, { useEffect, useState } from "react";
-import useSWR from "swr";
+import React, {useEffect, useState} from "react";
 import {
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Button,
-  ImageBackground,
+    StyleSheet,
+    Text,
+    TextInput,
+    Button,
+    ImageBackground,
 } from "react-native-web";
-import * as path from "path";
-import { SafeAreaView } from "react-native-web";
+import {SafeAreaView} from "react-native-web";
 import sendUsername from "./api/settings/api";
-
-const fetcher = () =>
-  fetch("/api/scores/list").then((response) => response.json());
-
-let displayname;
 
 export default function Home() {
 
-  const [data, setData] = useState([]);
-  const source={ uri: require('../public/backgroundDark.jpg') };
-  const [username, onChangeText] = useState();
+    const [usernameData, setUsernameData] = useState([]);
+    const [changeText, onChangeUsername] = React.useState(null);
 
-  const getUsername = async () => {
-    try {
-      const response = await fetch('http://localhost:30000/username');
-      const json = await response.json();
-      setData(json.data.value);
-    } catch (error) {
-      console.error(error);
+    const source = {uri: require('../public/backgroundDark.jpg')};
+
+    let usernameValue = "Guest";
+
+    const getUsername = async () => {
+        try {
+            const response = await fetch('http://localhost:50000/username');
+            const json = await response.json();
+            console.log("Get Username Data: ", json.data.value);
+            if (json.data.value === "undefined") {
+                json.data.value = "Guest";
+            }
+            setUsernameData(json.data.value);
+        } catch (error) {
+            console.error(error);
+        }
     }
-  }
 
-  useEffect(() => {
-    getUsername();
-  }, []);
+    useEffect(() => {
+        getUsername();
+    });
 
-  sendUsername(username);
-
-  return (
-    <ImageBackground source={source.uri.default.src} style={styles.bgImg}>
-    <SafeAreaView>
-      <Text>
-        {data}
-      </Text>
-      <TextInput
-        onChangeText={onChangeText}
-        value={username}
-      />
-    </SafeAreaView>
-    </ImageBackground>
-  );
+    return (
+        <ImageBackground source={source.uri.default.src} style={styles.bgImg}>
+            <SafeAreaView>
+                <Text>
+                    {usernameData}
+                </Text>
+                <TextInput
+                    ref={(el) => {
+                        if (el) {
+                            usernameValue = el.value;
+                        }
+                    }}
+                    style={styles.input}
+                    onChangeText={onChangeUsername}
+                    value={changeText}
+                    placeholder="Enter username here&hellip;"
+                />
+                <Button
+                    title="Send Username"
+                    onPress={() => {
+                        sendUsername(usernameValue)
+                            .then((resp) => {
+                                if (resp && resp === true) {
+                                    setUsernameData(usernameValue);
+                                }
+                            })
+                    }
+                    }/>
+            </SafeAreaView>
+        </ImageBackground>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center"
+    container: {
+        flex: 1,
+    },
+    image: {
+        flex: 1,
+        justifyContent: "center"
 
-  },
-  text: {
-    color: "white",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000c0"
-  },
-  bgImg: {
-    height: "448px",
-    width: "207px",
-  },
+    },
+    input: {
+        color: "black",
+        backgroundColor: "white",
+        fontFamily: "Arial"
+    },
+    text: {
+        color: "white",
+        fontSize: 42,
+        lineHeight: 84,
+        fontWeight: "bold",
+        textAlign: "center",
+        backgroundColor: "#000000c0"
+    },
+    bgImg: {
+        height: "448px",
+        width: "207px",
+    },
 });

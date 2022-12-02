@@ -1,22 +1,17 @@
 export default async function sendUsername(username) {
-  // if (username === "") {
-  //   username = "Guest"
-  // }
-  fetch(`http://localhost:30000/username/${username}`, {
-    method: "put",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      fetch("http://localhost:30000/username", {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json"
-        }
+  return new Promise((resolve, reject) => {
+      fetch(`http://localhost:50000/username/${username}`, {
+          method: "PUT"
       })
-        .then((response) => response.json())
-        .then((data) => { console.log(data) })
-    });
+          .then((response) => response.json())
+          .then((data) => {
+              if(data.success) {
+                  resolve(true);
+              }
+          })
+          .catch((err) => {
+              console.error("Error: ", err);
+              reject(err);
+          })
+  })
 }
