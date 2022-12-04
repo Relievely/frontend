@@ -5,7 +5,7 @@ import {
   Text,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-
+import { Card } from "react-native-elements";
 
 export default class AnimalPicker extends Component {
   constructor(props: any) {
@@ -17,20 +17,24 @@ export default class AnimalPicker extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.textStyle}>Choose an Animal:</Text>
-        <Picker
-          style={styles.pickerStyle}
-          selectedValue={(this.state as {selectedAnimal: string}).selectedAnimal}
-          onValueChange={(itemValue, itemIndex) => this.setState({selectedAnimal: itemValue})}
-        >
-          <Picker.Item label="🐶 Dog" value="dog" />
-          <Picker.Item label="🐱 Cat" value="cat" />
-          <Picker.Item label="🐭 Mouse" value="mouse" />
-          <Picker.Item label="🐹 Hamster" value="hamster" />
-          <Picker.Item label="🦊 Fox" value="fox" />
-        </Picker>
-      </View>
+      <Card>
+        <Card.Title>Change Persona</Card.Title>
+        <Card.Divider />
+        <View>
+          <Text style={styles.textStyle}>Choose an Animal:</Text>
+          <Picker
+            style={styles.pickerStyle}
+            selectedValue={(this.state as {selectedAnimal: string}).selectedAnimal}
+            onValueChange={(itemValue, itemIndex) => this.setState({selectedAnimal: itemValue})}
+          >
+            <Picker.Item label="🐶 Dog" value="dog" />
+            <Picker.Item label="🐱 Cat" value="cat" />
+            <Picker.Item label="🐭 Mouse" value="mouse" />
+            <Picker.Item label="🐹 Hamster" value="hamster" />
+            <Picker.Item label="🦊 Fox" value="fox" />
+          </Picker>
+        </View>
+      </Card>
     )
   }
 }
