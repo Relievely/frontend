@@ -8,7 +8,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { ColorSchemeName, Pressable, View } from "react-native";
+
+import { Text } from "../components/Themed";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -63,14 +65,19 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint
+        tabBarActiveTintColor: Colors["light"].tint,
+        tabBarActiveBackgroundColor: "#fff",
+        tabBarInactiveBackgroundColor: "#fff",
+        tabBarInactiveTintColor: Colors["dark"].tintInactive,
+        tabBarLabelPosition: "below-icon",
+        tabBarShowLabel: true
       }}>
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          tabBarIcon: () => <TabBarEmojiIcon value="🏠" />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}
@@ -81,7 +88,7 @@ function BottomTabNavigator() {
               <FontAwesome
                 name="info-circle"
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colors["light"].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -93,7 +100,7 @@ function BottomTabNavigator() {
         component={ReliefScreen}
         options={{
           title: "Relief",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
+          tabBarIcon: () => <TabBarEmojiIcon value="🧘" />
         }}
       />
       <BottomTab.Screen
@@ -101,7 +108,7 @@ function BottomTabNavigator() {
         component={GoalsScreen}
         options={{
           title: "Goals",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
+          tabBarIcon: () => <TabBarEmojiIcon value="🎯" />
         }}
       />
       <BottomTab.Screen
@@ -109,7 +116,7 @@ function BottomTabNavigator() {
         component={JournalScreen}
         options={{
           title: "Journal",
-          tabBarIcon: ({ color }) => <TabBarIcon name="book" color={color} />
+          tabBarIcon: () => <TabBarEmojiIcon value="📖" />
         }}
       />
     </BottomTab.Navigator>
@@ -125,3 +132,23 @@ function TabBarIcon(props: {
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
+
+function TabBarEmojiIcon(props: {
+  value: string
+}) {
+  return <View style={
+    {
+      marginBottom: -3,
+      borderStyle: "solid",
+      borderColor: "#000",
+      borderRadius: 500,
+      borderWidth: 1,
+      padding: 8,
+      shadowColor: '#171717',
+      shadowOffset: {width: -2, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+    }
+  }><Text style={{ fontFamily: "noto-color-emoji" }}>{props.value}</Text></View>;
+}
+
