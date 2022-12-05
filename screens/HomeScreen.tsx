@@ -61,5 +61,9 @@ const styles = StyleSheet.create({
   bgImg: {
     height: "448px",
     width: "207px"
+  },
+  card: {
+    borderRadius: 6,
   }
+
 });

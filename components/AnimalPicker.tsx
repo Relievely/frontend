@@ -67,11 +67,14 @@ export default class AnimalPicker extends Component {
             selectedValue={(this.state as {selectedAnimal: string}).selectedAnimal}
             onValueChange={(itemValue, itemIndex) => this.setState({ selectedAnimal: itemValue }, () => this.sendPersona(itemValue))}
           >
-            <Picker.Item label="🐶 Dog" value="dog" />
-            <Picker.Item label="🐱 Cat" value="cat" />
-            <Picker.Item label="🐭 Mouse" value="mouse" />
-            <Picker.Item label="🐹 Hamster" value="hamster" />
-            <Picker.Item label="🦊 Fox" value="fox" />
+            <Picker.Item label="🐼 | Panda" value="panda" />
+            <Picker.Item label="🐰 | Rabbit" value="rabbit" />
+            <Picker.Item label="🐋 | Whale" value="whale" />
+            <Picker.Item label="🐱 | Cat" value="cat" />
+            <Picker.Item label="🐍 | Snake" value="snake" />
+            <Picker.Item label="🦥 | Sloth" value="sloth" />
+            <Picker.Item label="🐧 | Penguin" value="penguin" />
+            <Picker.Item label="🐶 | Dog" value="dog" />
           </Picker>
         </View>
       </Card>
