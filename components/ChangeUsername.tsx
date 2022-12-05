@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  Text, TextInput, Button
+  Text, TextInput, Button, Pressable
 } from "react-native";
+
 
 import { Card } from "react-native-elements";
 
@@ -57,24 +58,26 @@ export class ChangeUsername extends Component {
 
   render() {
     return (
-      <View>
-        <Card containerStyle={{ marginTop: 15 }}>
-          <Card.Title>Change Username</Card.Title>
-          <Card.Divider />
-          <Text>
-            {(this.state as { usernameData: string }).usernameData}
+        <View style={styles.view}>
+          <View>
+          <Text style={styles.title}>Change your username</Text>
+            <View
+              style={{
+                borderBottomColor: 'gray',
+                borderBottomWidth: StyleSheet.hairlineWidth,
+              }}
+            />
+          <Text style={styles.text}>
+            Your current username is <Text style={{textDecorationLine: "underline"}}>{this.state.usernameData}</Text>, you can change it to whatever you want!
           </Text>
           <TextInput
             style={styles.input}
             onChangeText={(changedName) => {
               this.setState({ usernameData: changedName });
             }}
-            defaultValue="Guest"
-            placeholder="Enter username here&hellip;"
+            placeholder="Your new username&hellip;"
           />
-          <Button
-            title="Send Username"
-            onPress={() => {
+            <Pressable style={styles.button} onPress={() => {
               this.sendUsername((this.state as { usernameData: string }).usernameData)
                 .then((resp) => {
                   if (resp && resp === true) {
@@ -83,13 +86,43 @@ export class ChangeUsername extends Component {
                   }
                 });
             }
-            } />
-        </Card>
-      </View>
+            }>
+              <Text>submit</Text>
+            </Pressable>
+            </View>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  input: {}
+  view: {
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    marginHorizontal: 15,
+  },
+  input: {
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+    height: 20,
+    padding: 10,
+  },
+  button: {
+    backgroundColor: "#9ae8e1",
+    borderRadius: 5,
+    padding: 5,
+    marginTop: 5,
+    shadowRadius: 1,
+    width: "30%",
+    paddingLeft: 5,
+  },
+  title: {
+    fontSize: 15,
+    paddingBottom: 5,
+  },
+  text: {
+    marginVertical: 5,
+  }
 });
