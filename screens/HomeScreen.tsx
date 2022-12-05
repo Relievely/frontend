@@ -12,7 +12,6 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
 
   return (
     <LinearGradient style={styles.container}
-      // Button Linear Gradient
                     colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{ x: .5, y: .2 }}
                     end={{ x: 1, y: 1 }}>
       <SafeAreaView>
