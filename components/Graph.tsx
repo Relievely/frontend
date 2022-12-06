@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
     StyleSheet,
     View,
@@ -7,6 +7,7 @@ import {
 import {
     LineChart,
 } from "react-native-chart-kit";
+import {MoodString, MoodType, ProgressItem, ProgressItemResponse} from "../constants/Interfaces";
 
 export class Graph extends Component {
 
@@ -18,33 +19,11 @@ export class Graph extends Component {
             if (json.data === "undefined") {
                 json.data = "Guest";
             }
-            this.setState({ graphData: json.data });
+            this.setState({graphData: json.data});
         } catch (error) {
             console.error(error);
         }
     };
-
-    // public sendUsername = async (username: string) => {
-    //     return new Promise((resolve, reject) => {
-    //         if (username) {
-    //             fetch(`http://localhost:50000/username/${username}`, {
-    //                 method: "PUT"
-    //             })
-    //                 .then((response) => response.json())
-    //                 .then((data) => {
-    //                     if (data.success) {
-    //                         resolve(true);
-    //                     }
-    //                 })
-    //                 .catch((err) => {
-    //                     console.error("Error: ", err);
-    //                     reject(err);
-    //                 });
-    //         } else {
-    //             console.warn("No username given");
-    //         }
-    //     });
-    // };
 
     constructor(props: any) {
         super(props);
@@ -55,37 +34,49 @@ export class Graph extends Component {
         this.getProgress();
     }
 
+    private moodStringToNumber(mood: MoodString): MoodType {
+        let typedMoodString: keyof typeof MoodType = mood;
+        return MoodType[typedMoodString];
+    }
+
     public setData() {
-        if(this.state.graphData.value) {
-            console.log("Graph Data: ", this.state.graphData.value[0]);
-            this.state.graphData.forEach((element: any) => {
-                console.log("Element: ", element);
-            });
-        }
-        let moodValues = {
-            "Very Bad": 1,
-            "Bad": 2,
-            "Medium": 3,
-            "Good": 4,
-            "Very Good": 5,
-        }
+        const data = (this.state as { graphData: { value: any[] } }).graphData;
 
-
-
+        const progressList: ProgressItem[] = [];
 
         let moodData;
 
-        moodData = {labels: [
+        if (data.value) {
+            console.log("Graph Data: ", data.value);
+            data.value.forEach((element: ProgressItemResponse) => {
+                progressList.push({
+                    id: element.id,
+                    creationDate: new Date(element.creationDate),
+                    mood: this.moodStringToNumber(element.mood)
+                })
+                console.log("Element: ", element);
+            });
+            console.log("progressList: ", progressList);
 
-            "January", "February", "March", "April", "May", "June",
+            moodData = {
+                labels: progressList.map<string>((v: ProgressItem) => v.creationDate.getUTCDate().toString()),
+                datasets: [
+                    {
+                        data: progressList.map<number>((v: ProgressItem) => v.mood)
+                    }
+                ]
+            };
+        } else {
+            moodData = {
+                labels: [],
+                datasets: [
+                    {
+                        data: []
+                    }
+                ]
+            };
+        }
 
-            ],
-            datasets: [
-                {
-                    data: [1, 2, 3, 2 , 2, 1
-                    ]
-                }
-            ]};
 
         return moodData;
     }
@@ -98,14 +89,15 @@ export class Graph extends Component {
                     data={this.setData()}
                     width={Dimensions.get("window").width} // from react-native
                     height={220}
-                    yAxisLabel="$"
-                    yAxisSuffix="k"
+                    yAxisLabel=""
+                    yAxisSuffix=""
                     yAxisInterval={1} // optional, defaults to 1
+                    formatYLabel={(v: string): string => MoodType[Number(v)]}
                     chartConfig={{
                         backgroundColor: "#e26a00",
                         backgroundGradientFrom: "#fb8c00",
                         backgroundGradientTo: "#ffa726",
-                        decimalPlaces: 2, // optional, defaults to 2dp
+                        decimalPlaces: 0, // optional, defaults to 2dp
                         color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                         labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                         style: {
