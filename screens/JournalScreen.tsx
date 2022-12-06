@@ -3,6 +3,7 @@ import React from 'react';
 
 import { RootTabScreenProps } from '../types';
 import { LinearGradient } from "expo-linear-gradient";
+import {Graph} from "../components/Graph";
 
 
 
@@ -84,9 +85,7 @@ export default function JournalScreen({ navigation }: RootTabScreenProps<'Journa
           </TouchableOpacity>
           </View>
         </View>
-        <View style = {styles.container2}>
-          <Text style={styles.title}>Your progress</Text>
-        </View>
+      <Graph />
       </LinearGradient>
   );
 }
