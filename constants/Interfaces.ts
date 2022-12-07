@@ -19,3 +19,10 @@ export enum MoodType {
     "Good" = 4,
     "Very Good" = 5
 }
+
+export interface ActivityItem {
+    id?: number,
+    name: string,
+    description: string,
+    category: "Guided" | "Non-Guided"
+}

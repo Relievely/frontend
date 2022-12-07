@@ -8,6 +8,7 @@ import {
     LineChart,
 } from "react-native-chart-kit";
 import {MoodString, MoodType, ProgressItem, ProgressItemResponse} from "../constants/Interfaces";
+import {Card} from "react-native-elements";
 
 export class Graph extends Component {
 
@@ -59,7 +60,7 @@ export class Graph extends Component {
             console.log("progressList: ", progressList);
 
             moodData = {
-                labels: progressList.map<string>((v: ProgressItem) => v.creationDate.getUTCDate().toString()),
+                labels: progressList.map<string>((v: ProgressItem) => `${v.creationDate.getUTCDate().toString()}-${v.creationDate.getUTCMonth().toString()}`),
                 datasets: [
                     {
                         data: progressList.map<number>((v: ProgressItem) => v.mood)
@@ -83,39 +84,41 @@ export class Graph extends Component {
 
     render() {
         return (
-            <View>
-                <Text>Your progress</Text>
-                <LineChart
-                    data={this.setData()}
-                    width={Dimensions.get("window").width} // from react-native
-                    height={220}
-                    yAxisLabel=""
-                    yAxisSuffix=""
-                    yAxisInterval={1} // optional, defaults to 1
-                    formatYLabel={(v: string): string => MoodType[Number(v)]}
-                    chartConfig={{
-                        backgroundColor: "#e26a00",
-                        backgroundGradientFrom: "#fb8c00",
-                        backgroundGradientTo: "#ffa726",
-                        decimalPlaces: 0, // optional, defaults to 2dp
-                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                        style: {
+            <Card>
+                <Card.Title>Progress</Card.Title>
+                <View>
+                    <LineChart
+                        data={this.setData()}
+                        width={Dimensions.get("window").width} // from react-native
+                        height={200}
+                        yAxisLabel=""
+                        yAxisSuffix=""
+                        yAxisInterval={1} // optional, defaults to 1
+                        formatYLabel={(v: string): string => MoodType[Number(v)]}
+                        chartConfig={{
+                            backgroundColor: "#e26a00",
+                            backgroundGradientFrom: "#fb8c00",
+                            backgroundGradientTo: "#ffa726",
+                            decimalPlaces: 0, // optional, defaults to 2dp
+                            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                            style: {
+                                borderRadius: 16
+                            },
+                            propsForDots: {
+                                r: "2", //dot size
+                                strokeWidth: "2",
+                                stroke: "#ffa726"
+                            }
+                        }}
+                        bezier
+                        style={{ //this influences the box the graph is in
+                            marginVertical: 8,
                             borderRadius: 16
-                        },
-                        propsForDots: {
-                            r: "2", //dot size
-                            strokeWidth: "2",
-                            stroke: "#ffa726"
-                        }
-                    }}
-                    bezier
-                    style={{ //this influences the box the graph is in
-                        marginVertical: 8,
-                        borderRadius: 16
-                    }}
-                />
-            </View>
+                        }}
+                    />
+                </View>
+            </Card>
         );
     }
 }
