@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Animated
 } from "react-native";
+import {Button} from "react-native-elements";
 
 class BurgerMenu extends Component {
 
@@ -39,13 +40,13 @@ class BurgerMenu extends Component {
     });
 
     return (
-      <View style={styles.container}>
+      <View style={styles.cardContainer}>
         {/* hamburger icon */}
-        <TouchableOpacity onPress={() => this.toggleMenu()}>
+        <Button onPress={() => this.toggleMenu()}>
           <Animated.View style={[styles.button, { transform: [{ rotate }] }]}>
             <Text style={styles.buttonText}>☰</Text>
           </Animated.View>
-        </TouchableOpacity>
+        </Button>
 
         {/* menu content */}
         {menuOpen && (
@@ -62,7 +63,7 @@ class BurgerMenu extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  cardContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center"

@@ -23,6 +23,7 @@ import ReliefScreen from "../screens/ReliefScreen";
 import GoalsScreen from "../screens/GoalsScreen";
 import JournalScreen from "../screens/JournalScreen";
 import BurgerMenu from "../components/BurgerMenu";
+import EmojiText from "../components/EmojiText";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -149,6 +150,6 @@ function TabBarEmojiIcon(props: {
       shadowOpacity: 0.2,
       shadowRadius: 3,
     }
-  }><Text style={{ fontFamily: "noto-color-emoji" }}>{props.value}</Text></View>;
+  }><EmojiText value={props.value}/></View>;
 }
 

@@ -1,3 +1,5 @@
+import {StyleSheet} from "react-native";
+
 const tintColorLight = '#000';
 const tintColorDark = '#fff';
 
@@ -16,6 +18,5 @@ export default {
     tint: tintColorDark,
     tintInactive: '#2A2A2AFF',
     tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
+    tabIconSelected: tintColorDark },
 };
