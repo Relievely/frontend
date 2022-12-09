@@ -69,10 +69,7 @@ export class Graph extends Component {
             "Good": 4,
             "Very Good": 5,
         }
-
-
-
-
+        
         let moodData;
 
         moodData = {labels: [
