@@ -1,36 +1,21 @@
 import React, {Component} from "react";
-import {Button, Card} from "react-native-elements";
-import {FlatList, SafeAreaView, StyleSheet, Text, TextInput, View} from "react-native";
+import {Button, ButtonGroup, Card, Input} from "react-native-elements";
+import {StyleSheet, View} from "react-native";
 import EmojiText from "./EmojiText";
 
-export default class MoodSelector extends Component {
+export default class MoodSelector extends Component<{ style: any }> {
 
-    public Mood = [
-        {
-            src: '',
-            string: 'Very stressed'
-        },
-        {
-            string: 'Stressed'
-        },
-        {
-            string: 'Okay'
-        },
-        {
-            string: 'Calm'
-        },
-        {
-            string: 'Happy'
-        },
-    ]
+    updateIndex(selectedIndex: number) {
+        this.setState({selectedIndex})
+    }
 
     render() {
         return (
-            <Card>
-                <Card.Title style={styles.title}>
+            <Card containerStyle={this.props.style.container}
+                  wrapperStyle={this.props.style.wrapper}>
+                <Card.Title style={this.props.style.title}>
                     How are you today?
                 </Card.Title>
-                <Card.Divider/>
                 <View style={styles.rowList}>
                     <MoodButton value={"😫"}/>
                     <MoodButton value={"😟"}/>
@@ -38,10 +23,11 @@ export default class MoodSelector extends Component {
                     <MoodButton value={"🙂"}/>
                     <MoodButton value={"😊"}/>
                 </View>
-                <View>
-                    <TextInput style={styles.input}
-                               placeholder="Note"
-                    ></TextInput>
+                <View style={styles.inputRow}>
+                    <Input autoCompleteType style={this.props.style.input}
+                           placeholder="Note"
+                    ></Input>
+                    <Button title={"Submit"} type={"outline"}/>
                 </View>
             </Card>
         )
@@ -49,14 +35,18 @@ export default class MoodSelector extends Component {
 }
 
 function MoodButton(props: {
-    value: string
-}) {
+                        value: string
+                    }
+) {
     return (
         <Button
+            onPress={() => console.log("Button clicked!")}
             title={<EmojiText value={props.value}/>}
+            type={"outline"}
+            raised={true}
             containerStyle={{
                 marginHorizontal: 10,
-                marginVertical: 10,
+                marginVertical: 10
             }}
         />
     )
@@ -69,27 +59,19 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "nowrap",
         overflow: "visible",
-        textAlign: "center"
+        textAlign: "center",
+        justifyContent: "space-evenly"
     },
-    title: {
-        backgroundColor: "#aadde9",
-        height: 40,
-        borderRadius: 5,
-        fontWeight: "bold",
-        padding: 6,
+    inputRow: {
+        flex: 1,
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "space-evenly",
+        marginHorizontal: "20%"
     },
     text: {
         fontStyle: "italic",
         marginLeft: 10,
         padding: 4,
-    },
-    input: {
-        height: 40,
-        marginTop: 10,
-        marginLeft: 10,
-        borderWidth: 1,
-        padding: 10,
-        width: 250,
-        borderRadius: 7,
-    },
+    }
 });

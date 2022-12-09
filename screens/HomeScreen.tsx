@@ -1,32 +1,32 @@
-import { Button, ImageBackground, SafeAreaView, StyleSheet, TextInput } from "react-native";
-import { Text, View } from "../components/Themed";
+import {SafeAreaView, ScrollView, StyleSheet, TextInput} from "react-native";
 import { RootTabScreenProps } from "../types";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AnimalPicker from "../components/AnimalPicker";
 import { LinearGradient } from "expo-linear-gradient";
-import { Card } from "react-native-elements";
-import ThemedCard from "react-native-elements/dist/card/Card";
 import { ChangeUsername } from "../components/ChangeUsername";
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
 
   return (
-    <LinearGradient style={styles.container}
+    <LinearGradient style={styles.cardContainer}
                     colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{ x: .5, y: .2 }}
                     end={{ x: 1, y: 1 }}>
       <SafeAreaView>
-        <ChangeUsername />
-        <AnimalPicker />
+        <ScrollView>
+          <ChangeUsername />
+          <AnimalPicker />
+        </ScrollView>
       </SafeAreaView>
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  cardContainer: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    fontFamily: "comfortaa",
   },
   title: {
     fontSize: 20,
@@ -57,10 +57,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "comfortaa",
     backgroundColor: "#000000c0"
-  },
-  bgImg: {
-    height: "448px",
-    width: "207px"
   },
   card: {
     borderRadius: 6,

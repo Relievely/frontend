@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import {Button, Card} from "react-native-elements";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {ActivityItem} from "../constants/Interfaces";
+import {ActivityService, JournalService} from "../constants/Services";
 
-export default class Reflection extends Component {
-    constructor(props: { styles: any }) {
+export default class Reflection extends Component<{ style: any }, { yesterdayMood: string, yesterdayActivity: string }> {
+    constructor(props: { style: any }) {
         super(props);
         this.state = {
             yesterdayMood: "😐",
@@ -16,39 +17,40 @@ export default class Reflection extends Component {
 
     public getMoodFromYesterday = async () => {
         try {
-            const response = await fetch("http://localhost:50003/progress");
+            const response = await fetch(`${JournalService}/progress`);
             const json = await response.json();
-            console.log("Get Username Data: ", json.data.value);
+            console.log("Get Username Data: ", json.data);
             if (json.data.value === "undefined") {
                 json.data.value = "Guest";
             }
-            this.setState({usernameData: json.data.value});
+            this.setState({yesterdayMood: json.data.value});
         } catch (error) {
             console.error(error);
         }
     };
 
     public getActivityFromYesterday = async () => {
-        try {
-            const response = await fetch("http://localhost:50005/activity/latest");
-            const json = await response.json();
-            console.log("Get Latest Activity Data: ", json.data.value);
-            if (!json.data.value) {
-                console.error("Response is undefined");
-            }
-            this.setState({yesterdayActivity: (json.data.value as ActivityItem).name});
-        } catch (error) {
-            console.error(error);
-        }
+        fetch(`${ActivityService}/activity/latest`)
+            .then(async (response) => {
+                const json = await response.json();
+                console.log("Get Latest Activity Data: ", json.data);
+                if (!json.data.value) {
+                    console.error("Response is undefined");
+                }
+                this.setState({yesterdayActivity: (json.data.value as ActivityItem).name});
+            })
+            .catch((error) => {
+                console.error(error);
+            })
     };
 
     render() {
         return (
-            <Card>
+            <Card containerStyle={this.props.style.container}
+                  wrapperStyle={this.props.style.wrapper}>
                 <Card.Title style={this.props.style.title}>
                     Let's reflect
                 </Card.Title>
-                <Card.Divider/>
                 <Text style={this.props.style.text}>Yesterday you felt: {this.state.yesterdayMood}</Text>
                 <Text style={this.props.style.text}>Activity you did: {this.state.yesterdayActivity}</Text>
                 <Text style={this.props.style.text}>Did it work?</Text>
@@ -58,11 +60,15 @@ export default class Reflection extends Component {
                     }}
                             title={"👍"}
                             accessibilityLabel={"Thumbs Up Button"}
+                            type={"outline"}
+                            raised={true}
                     />
                     <Button onPress={() => {
                     }}
                             title={"👎"}
                             accessibilityLabel={"Thumbs Up Button"}
+                            type={"outline"}
+                            raised={true}
                     />
                 </View>
             </Card>
@@ -85,11 +91,6 @@ const styles = StyleSheet.create({
         padding: 1,
         textAlign: "center",
         justifyContent: "space-around"
-    },
-    text: {
-        fontStyle: "italic",
-        marginLeft: 10,
-        padding: 4,
     },
     input: {
         height: 40,

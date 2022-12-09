@@ -1,4 +1,4 @@
-import {StyleSheet, View, ScrollView} from "react-native";
+import {StyleSheet, View, ScrollView, SafeAreaView} from "react-native";
 import React from 'react';
 
 import {RootTabScreenProps} from '../types';
@@ -9,63 +9,83 @@ import MoodSelector from "../components/MoodSelector";
 
 export default function JournalScreen({navigation}: RootTabScreenProps<'Journal'>) {
     return (
-        <LinearGradient style={styles.mainContainer}
+        <LinearGradient style={styles.container}
                         colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{x: .5, y: .2}}
                         end={{x: 1, y: 1}}>
-            <ScrollView>
-                <View style={styles.container}>
-                    <MoodSelector/>
-                </View>
-                <View style={styles.container}>
-                    <Reflection style={cardStyles}/>
-                </View>
-                <View style={styles.container}>
-                    <Graph/>
-                </View>
-            </ScrollView>
+            <SafeAreaView style={{marginHorizontal: 100}}>
+                <ScrollView style={styles.scrollContainer}>
+                    <View style={styles.cardContainer}>
+                        <MoodSelector style={cardStyles}/>
+                    </View>
+                    <View style={styles.cardContainer}>
+                        <Reflection style={cardStyles}/>
+                    </View>
+                    <View style={styles.cardContainer}>
+                        <Graph style={cardStyles}/>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         </LinearGradient>
     );
 }
 
 const cardStyles = StyleSheet.create({
+    container: {
+        borderColor: "transparent",
+        marginHorizontal: 0,
+        marginTop: 0,
+        paddingHorizontal: 0,
+        paddingTop: 0,
+        borderRadius: 25,
+        width: "100%",
+        backgroundColor: "transparent"
+    },
+    wrapper: {
+        borderColor: "transparent",
+        marginHorizontal: 0,
+        marginTop: 0,
+        paddingHorizontal: 0,
+        paddingTop: 0,
+        borderRadius: 25,
+        width: "100%",
+        backgroundColor: "#fff",
+        paddingBottom: 25
+    },
     title: {
-        backgroundColor: "#aadde9",
-        height: 40,
-        borderRadius: 5,
-        fontWeight: "bold",
-        padding: 6,
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
+        backgroundColor: "#AADDE9",
+        color: "#3a3a3a",
+        paddingVertical: 5,
+        fontWeight: "bold"
     },
     text: {
-        fontStyle: "italic",
-        marginLeft: 10,
-        padding: 4,
+        color: "#000"
     }
 })
 
 const styles = StyleSheet.create({
-    mainContainer: {
+    container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        paddingHorizontal: 20,
+        fontFamily: "comfortaa",
     },
-    container: {
+    scrollContainer: {
+        marginHorizontal: "10%"
+    },
+    cardContainer: {
         textAlign: "center",
         justifyContent: "center",
-        marginBottom: 15,
-        backgroundColor: '#ffff',
-        borderRadius: 10,
-        marginVertical: 10,
-        marginHorizontal: 10
+        backgroundColor: 'transparent',
+        marginVertical: 10
     },
     title: {
         backgroundColor: "#aadde9",
         borderRadius: 5,
         fontWeight: "bold",
         padding: 6,
-    },
-    thumbs: {
-        marginLeft: 14,
-        padding: 1,
     },
     text: {
         fontStyle: "italic",
@@ -74,9 +94,8 @@ const styles = StyleSheet.create({
     },
     input: {
         marginTop: 10,
-        marginLeft: 10,
         borderWidth: 1,
         padding: 10,
-        borderRadius: 7,
+        marginHorizontal: "30%"
     },
 });

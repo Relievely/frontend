@@ -10,7 +10,7 @@ import {
 import {MoodString, MoodType, ProgressItem, ProgressItemResponse} from "../constants/Interfaces";
 import {Card} from "react-native-elements";
 
-export class Graph extends Component {
+export class Graph extends Component<{ style: any }> {
 
     public getProgress = async () => {
         try {
@@ -47,7 +47,7 @@ export class Graph extends Component {
 
         let moodData;
 
-        if (data.value) {
+        if (data && data.value) {
             console.log("Graph Data: ", data.value);
             data.value.forEach((element: ProgressItemResponse) => {
                 progressList.push({
@@ -84,73 +84,42 @@ export class Graph extends Component {
 
     render() {
         return (
-            <Card>
-                <Card.Title>Progress</Card.Title>
-                <View>
-                    <LineChart
-                        data={this.setData()}
-                        width={Dimensions.get("window").width} // from react-native
-                        height={200}
-                        yAxisLabel=""
-                        yAxisSuffix=""
-                        yAxisInterval={1} // optional, defaults to 1
-                        formatYLabel={(v: string): string => MoodType[Number(v)]}
-                        chartConfig={{
-                            backgroundColor: "#e26a00",
-                            backgroundGradientFrom: "#fb8c00",
-                            backgroundGradientTo: "#ffa726",
-                            decimalPlaces: 0, // optional, defaults to 2dp
-                            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                            style: {
-                                borderRadius: 16
-                            },
-                            propsForDots: {
-                                r: "2", //dot size
-                                strokeWidth: "2",
-                                stroke: "#ffa726"
-                            }
-                        }}
-                        bezier
-                        style={{ //this influences the box the graph is in
-                            marginVertical: 8,
+            <Card containerStyle={this.props.style.container}
+                  wrapperStyle={this.props.style.wrapper}>
+                <Card.Title style={this.props.style.title}>
+                    Progress
+                </Card.Title>
+                <LineChart
+                    data={this.setData()}
+                    width={Dimensions.get("window").width} // from react-native
+                    height={200}
+                    yAxisLabel=""
+                    yAxisSuffix=""
+                    yAxisInterval={1} // optional, defaults to 1
+                    formatYLabel={(v: string): string => MoodType[Number(v)]}
+                    chartConfig={{
+                        backgroundColor: "#e26a00",
+                        backgroundGradientFrom: "#fb8c00",
+                        backgroundGradientTo: "#ffa726",
+                        decimalPlaces: 0, // optional, defaults to 2dp
+                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        style: {
                             borderRadius: 16
-                        }}
-                    />
-                </View>
+                        },
+                        propsForDots: {
+                            r: "2", //dot size
+                            strokeWidth: "2",
+                            stroke: "#ffa726"
+                        }
+                    }}
+                    bezier
+                    style={{ //this influences the box the graph is in
+                        marginVertical: 8,
+                        borderRadius: 16
+                    }}
+                />
             </Card>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    view: {
-        padding: 10,
-        backgroundColor: "white",
-        borderRadius: 10,
-        marginHorizontal: 15,
-    },
-    input: {
-        borderRadius: 4,
-        borderWidth: 0.5,
-        borderColor: '#d6d7da',
-        height: 20,
-        padding: 10,
-    },
-    button: {
-        backgroundColor: "#9ae8e1",
-        borderRadius: 5,
-        padding: 5,
-        marginTop: 5,
-        shadowRadius: 1,
-        width: "30%",
-        paddingLeft: 5,
-    },
-    title: {
-        fontSize: 15,
-        paddingBottom: 5,
-    },
-    text: {
-        marginVertical: 5,
-    }
-});

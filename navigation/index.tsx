@@ -77,7 +77,7 @@ function BottomTabNavigator() {
         name="Home"
         component={HomeScreen}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
-          title: "Home",
+          title: "Settings",
           tabBarIcon: () => <TabBarEmojiIcon value="🏠" />,
           headerRight: () => (
             <Pressable
