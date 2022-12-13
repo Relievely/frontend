@@ -6,7 +6,7 @@ import { RootTabScreenProps } from '../types';
 
 export default function GoalsScreen({ navigation }: RootTabScreenProps<'Goals'>) {
   return (
-    <View style={styles.container}>
+    <View style={styles.cardContainer}>
       <Text style={styles.title}>Goals</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/GoalsScreen.tsx" />
@@ -15,7 +15,7 @@ export default function GoalsScreen({ navigation }: RootTabScreenProps<'Goals'>)
 }
 
 const styles = StyleSheet.create({
-  container: {
+  cardContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
