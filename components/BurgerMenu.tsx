@@ -52,7 +52,7 @@ class BurgerMenu extends Component {
         {menuOpen && (
           <View style={styles.menu}>
             <Text>Menu</Text>
-            <Text>Option 1</Text>
+            <Text>Settings</Text>
             <Text>Option 2</Text>
             <Text>Option 3</Text>
           </View>

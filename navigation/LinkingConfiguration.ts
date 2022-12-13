@@ -4,53 +4,54 @@
  * https://reactnavigation.org/docs/configuring-links
  */
 
-import { LinkingOptions } from '@react-navigation/native';
+import {LinkingOptions} from '@react-navigation/native';
 import * as Linking from 'expo-linking';
 
-import { RootStackParamList } from '../types';
+import {RootStackParamList} from '../types';
 
 const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: [Linking.createURL('/')],
-  config: {
-    screens: {
-      Root: {
+    prefixes: [Linking.createURL('/')],
+    config: {
         screens: {
-          Goals: {
-            screens: {
-              GoalsScreen: 'Goals',
+            Root: {
+                screens: {
+                    Goals: {
+                        screens: {
+                            GoalsScreen: 'Goals',
+                        },
+                    },
+                    Home: {
+                        screens: {
+                            HomeScreen: 'Home',
+                        },
+                    },
+                    Journal: {
+                        screens: {
+                            JournalScreen: 'Journal',
+                        },
+                    },
+                    Relief: {
+                        screens: {
+                            ReliefScreen: 'Relief',
+                        },
+                    },
+                    TabOne: {
+                        screens: {
+                            TabOneScreen: 'one',
+                        },
+                    },
+                    TabTwo: {
+                        screens: {
+                            TabTwoScreen: 'two',
+                        },
+                    },
+                },
             },
-          },
-          Home: {
-            screens: {
-              HomeScreen: 'Home',
-            },
-          },
-          Journal: {
-            screens: {
-              JournalScreen: 'Journal',
-            },
-          },
-          Relief: {
-            screens: {
-              ReliefScreen: 'Relief',
-            },
-          },
-          TabOne: {
-            screens: {
-              TabOneScreen: 'one',
-            },
-          },
-          TabTwo: {
-            screens: {
-              TabTwoScreen: 'two',
-            },
-          },
+            Modal: 'modal',
+            Settings: 'settings',
+            NotFound: '*',
         },
-      },
-      Modal: 'modal',
-      NotFound: '*',
     },
-  },
-};
+}
 
 export default linking;
