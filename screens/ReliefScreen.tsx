@@ -5,7 +5,6 @@ import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import {LinearGradient} from "expo-linear-gradient";
 import React from "react";
-import ActivityBox from "../components/ActivityBox";
 
 export default function ReliefScreen({ navigation }: RootTabScreenProps<'Relief'>) {
   return (
@@ -14,7 +13,21 @@ export default function ReliefScreen({ navigation }: RootTabScreenProps<'Relief'
                       end={{ x: 1, y: 1 }}>
         <SafeAreaView>
           <ScrollView>
-            <ActivityBox/>
+            <View style={styles.view}>
+              <View style={styles.box}>
+                <Text style={styles.text}>🧘‍♀️</Text>
+                <Text style={styles.text}>meditate</Text>
+              </View>
+              <View style={styles.box}>
+                <Text style={styles.text}>❔</Text>
+                <Text style={styles.text}>questions</Text>
+              </View>
+              <View style={styles.box}>
+                <Text style={styles.text}>🚶‍♀️</Text>
+                <Text style={styles.text}>walk</Text>
+              </View>
+            </View>
+
           </ScrollView>
         </SafeAreaView>
       </LinearGradient>
@@ -37,29 +50,26 @@ const styles = StyleSheet.create({
     height: 1,
     width: "80%"
   },
-  paragraph: {},
-  button: {},
-  image: {
-    flex: 1,
-    justifyContent: "center"
-
-  },
-  input: {
+  text: {
     color: "black",
     backgroundColor: "white",
-    fontFamily: "Arial"
-  },
-  text: {
-    color: "white",
     fontSize: 42,
     lineHeight: 84,
-    fontWeight: "bold",
     textAlign: "center",
     fontFamily: "comfortaa",
-    backgroundColor: "#000000c0"
   },
-  card: {
-    borderRadius: 6,
+  view: {
+    display: "flex",
+    flexDirection: "row",
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    marginHorizontal: 15,
+  },
+  box: {
+    borderColor: "black",
+    borderWidth: 1,
+    margin: 8,
+    borderRadius: 10,
   }
-
 });
