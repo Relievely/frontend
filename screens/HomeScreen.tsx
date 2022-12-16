@@ -13,8 +13,6 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
                     end={{ x: 1, y: 1 }}>
       <SafeAreaView>
         <ScrollView>
-          <ChangeUsername />
-          <AnimalPicker />
         </ScrollView>
       </SafeAreaView>
     </LinearGradient>

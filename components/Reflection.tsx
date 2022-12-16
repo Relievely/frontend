@@ -34,7 +34,7 @@ export default class Reflection extends Component<{ style: any }, { yesterdayMoo
             .then(async (response) => {
                 const json = await response.json();
                 console.log("Get Latest Activity Data: ", json.data);
-                if (!json.data.value) {
+                if (!json.data && !json.data.value) {
                     console.error("Response is undefined");
                 }
                 this.setState({yesterdayActivity: (json.data.value as ActivityItem).name});

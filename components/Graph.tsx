@@ -35,6 +35,7 @@ export class Graph extends Component<{ style: any }> {
         this.getProgress();
     }
 
+
     private moodStringToNumber(mood: MoodString): MoodType {
         let typedMoodString: keyof typeof MoodType = mood;
         return MoodType[typedMoodString];
