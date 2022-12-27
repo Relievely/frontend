@@ -1,18 +1,48 @@
-import {SafeAreaView, ScrollView, StyleSheet, TextInput} from "react-native";
+import {FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import { RootTabScreenProps } from "../types";
 import React from "react";
-import AnimalPicker from "../components/AnimalPicker";
 import { LinearGradient } from "expo-linear-gradient";
-import { ChangeUsername } from "../components/ChangeUsername";
+
+// const data = [
+//   {
+//     id: '1',
+//     title: 'Sit comfortablyin a place you can relax. You don’t need to sit cross-legged, as long as you are comfortable and good to sit in this position for about 5-10 minutes.',
+//   },
+//   {
+//     id: '2',
+//     title: 'Set a timer. For beginners, 5 to 10 minutes is long enough.',
+//   },
+//   {
+//     id: '3',
+//     title: ' Breathe in and out, try to focus on the sensation of air leaving and entering your body.',
+//   },
+//   {
+//     id: '4',
+//     title: 'Inevitably, your mind will start to wonder. Don’t worry about what occupies your mind, and don’t brush away thoughts that appear. Now is the moment you can take the time to think about things.',
+//   },
+//   {
+//     id: '5',
+//     title: 'When you feel you have dwelled on a subject long enough, return to focussing on your breath.It’s perfectly okay to get distracted again, be sure to give each occurring thought the attention it deserves before returning back to breathing.',
+//   },
+//   {
+//     id: '6',
+//     title: 'When your timer is over, try to notice your surroundings and think about how you are feeling.',
+//   },
+// ];
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
 
   return (
-    <LinearGradient style={styles.cardContainer}
+    <LinearGradient style={styles.navbar}
                     colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{ x: .5, y: .2 }}
                     end={{ x: 1, y: 1 }}>
       <SafeAreaView>
         <ScrollView>
+          <View style={styles.cardContainer}>
+            <Text style={styles.title1}>Mediation</Text>
+            <Text style={styles.emoji}>🧘‍</Text>
+            <Text style={styles.text}>Meditation is a great method to relieve stress because you only needthe thing you always carry with you: Yourself.This means you can do it anywhere. However, it’s easier for beginners to do it in a space that you have for yourself where you don’t get distracted easily.</Text>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </LinearGradient>
@@ -20,11 +50,22 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
 }
 
 const styles = StyleSheet.create({
-  cardContainer: {
+  navbar: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "comfortaa",
+  },
+  emoji: {
+    fontSize: 50,
+  },
+  title1: {
+    backgroundColor: "#aadde9",
+    height: 40,
+    borderRadius: 5,
+    fontFamily: "comfortaa",
+    fontSize: 20,
+    padding: 6,
   },
   title: {
     fontSize: 20,
@@ -48,16 +89,19 @@ const styles = StyleSheet.create({
     fontFamily: "Arial"
   },
   text: {
-    color: "white",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontSize: 12,
     fontFamily: "comfortaa",
-    backgroundColor: "#000000c0"
   },
   card: {
     borderRadius: 6,
-  }
+  },
+  cardContainer: {
+    textAlign: "center",
+    marginBottom: 15,
+    backgroundColor: '#ffff',
+    borderRadius: 10,
+    width: 365,
+    height: 500,
+  },
 
 });
