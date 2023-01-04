@@ -1,11 +1,5 @@
-import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Animated
-} from "react-native";
+import React, {Component} from "react";
+import {Animated, StyleSheet, Text, View} from "react-native";
 import {Button} from "react-native-elements";
 
 class BurgerMenu extends Component {

@@ -1,12 +1,6 @@
 import React, {Component} from "react";
-import {
-    StyleSheet,
-    View,
-    Text, Dimensions,
-} from "react-native";
-import {
-    LineChart,
-} from "react-native-chart-kit";
+import {Dimensions,} from "react-native";
+import {LineChart,} from "react-native-chart-kit";
 import {MoodString, MoodType, ProgressItem, ProgressItemResponse} from "../constants/Interfaces";
 import {Card} from "react-native-elements";
 

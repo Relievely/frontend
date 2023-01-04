@@ -1,11 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import {Platform, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import {LinearGradient} from "expo-linear-gradient";
 import AnimalPicker from "../components/AnimalPicker";
-import { ChangeUsername } from "../components/ChangeUsername";
+import {ChangeUsername} from "../components/ChangeUsername";
 import React from "react";
 
 export default function SettingsScreen() {

@@ -1,12 +1,5 @@
 import React, {Component} from "react";
-import {
-    StyleSheet,
-    View,
-    Text, TextInput, Button, Pressable
-} from "react-native";
-
-
-import {Card} from "react-native-elements";
+import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 
 export class ChangeUsername extends Component {
     public usernameValue: string = "";

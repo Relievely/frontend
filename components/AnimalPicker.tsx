@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View,} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import { Card } from "react-native-elements";
+import {Card} from "react-native-elements";
 
 export default class AnimalPicker extends Component {
 

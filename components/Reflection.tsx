@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Button, Card} from "react-native-elements";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {ActivityItem} from "../constants/Interfaces";
 import {ActivityService, JournalService} from "../constants/Services";
 

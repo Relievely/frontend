@@ -1,6 +1,6 @@
+import * as React from "react";
 import {Component} from "react";
 import {Text} from "./Themed";
-import * as React from "react";
 
 export default class EmojiText extends Component<{value: string}> {
     render() {

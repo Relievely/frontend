@@ -1,5 +1,3 @@
-import {StyleSheet} from "react-native";
-
 const tintColorLight = '#000';
 const tintColorDark = '#fff';
 

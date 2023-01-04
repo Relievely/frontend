@@ -1,7 +1,7 @@
-import {FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
-import { RootTabScreenProps } from "../types";
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
+import {RootTabScreenProps} from "../types";
 import React from "react";
-import { LinearGradient } from "expo-linear-gradient";
+import {LinearGradient} from "expo-linear-gradient";
 
 // const data = [
 //   {

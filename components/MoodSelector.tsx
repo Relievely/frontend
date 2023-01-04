@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, ButtonGroup, Card, Input} from "react-native-elements";
+import {Button, Card, Input} from "react-native-elements";
 import {StyleSheet, View} from "react-native";
 import EmojiText from "./EmojiText";
 
