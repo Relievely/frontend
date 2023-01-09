@@ -6,6 +6,15 @@ import {Card} from "react-native-elements";
 
 export class Graph extends Component<{ style: any }> {
 
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            graphData: {}
+        };
+
+        this.getProgress();
+    }
+
     public getProgress = async () => {
         try {
             const response = await fetch("http://localhost:50003/progress");
@@ -19,21 +28,6 @@ export class Graph extends Component<{ style: any }> {
             console.error(error);
         }
     };
-
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            graphData: {}
-        };
-
-        this.getProgress();
-    }
-
-
-    private moodStringToNumber(mood: MoodString): MoodType {
-        let typedMoodString: keyof typeof MoodType = mood;
-        return MoodType[typedMoodString];
-    }
 
     public setData() {
         const data = (this.state as { graphData: { value: any[] } }).graphData;
@@ -116,5 +110,10 @@ export class Graph extends Component<{ style: any }> {
                 />
             </Card>
         );
+    }
+
+    private moodStringToNumber(mood: MoodString): MoodType {
+        let typedMoodString: keyof typeof MoodType = mood;
+        return MoodType[typedMoodString];
     }
 }
