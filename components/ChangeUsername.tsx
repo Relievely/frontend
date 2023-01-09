@@ -4,6 +4,15 @@ import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 export class ChangeUsername extends Component {
     public usernameValue: string = "";
 
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            usernameData: "Guest"
+        };
+
+        this.getUsername();
+    }
+
     public getUsername = async () => {
         try {
             const response = await fetch("http://localhost:50000/username");
@@ -39,15 +48,6 @@ export class ChangeUsername extends Component {
             }
         });
     };
-
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            usernameData: "Guest"
-        };
-
-        this.getUsername();
-    }
 
     render() {
         return (

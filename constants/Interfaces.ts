@@ -10,7 +10,7 @@ export interface ProgressItemResponse {
     mood: MoodString
 }
 
-export type MoodString =  "Very Bad" | "Bad" | "Medium" | "Good" | "Very Good"
+export type MoodString = "Very Bad" | "Bad" | "Medium" | "Good" | "Very Good"
 
 export enum MoodType {
     "Very Bad" = 1,
