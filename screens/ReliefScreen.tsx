@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, TouchableHighlight} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -9,22 +9,37 @@ import React from "react";
 export default function ReliefScreen({ navigation }: RootTabScreenProps<'Relief'>) {
   return (
       <LinearGradient style={styles.cardContainer}
-                      colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{ x: .5, y: .2 }}
+                      colors={["#50d1ff", "#9a3aff"]} locations={[0, 1]} start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 1 }}>
         <SafeAreaView>
           <ScrollView>
+            <Text style={styles.title}>Feeling stressed? Try one of these activities:</Text>
             <View style={styles.view}>
               <View style={styles.box}>
-                <Text style={styles.text}>🧘‍♀️</Text>
-                <Text style={styles.text}>meditate</Text>
+
+                <TouchableHighlight>
+                  <View style={styles.button}>
+                    <Text style={styles.text}>🧘‍♀️</Text>
+                    <Text style={styles.text}>meditation</Text>
+                  </View>
+                </TouchableHighlight>
+
               </View>
               <View style={styles.box}>
+                <TouchableHighlight>
+                  <View style={styles.button}>
                 <Text style={styles.text}>❔</Text>
                 <Text style={styles.text}>questions</Text>
+                  </View>
+                </TouchableHighlight>
               </View>
               <View style={styles.box}>
+                <TouchableHighlight>
+                  <View style={styles.button}>
                 <Text style={styles.text}>🚶‍♀️</Text>
-                <Text style={styles.text}>walk</Text>
+                <Text style={styles.text}>walking</Text>
+                  </View>
+                </TouchableHighlight>
               </View>
             </View>
 
@@ -40,36 +55,39 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "comfortaa",
+    textAlign: "center",
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold"
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%"
+    fontWeight: "600",
   },
   text: {
     color: "black",
     backgroundColor: "white",
-    fontSize: 42,
-    lineHeight: 84,
+    fontSize: 24,
+    lineHeight: 64,
     textAlign: "center",
-    fontFamily: "comfortaa",
   },
   view: {
+    borderRadius: 25,
+    width: '100%',
     display: "flex",
     flexDirection: "row",
     padding: 10,
     backgroundColor: "white",
-    borderRadius: 10,
-    marginHorizontal: 15,
+    fontFamily: 'comfortaa',
+    fontSize: 16,
   },
+
   box: {
-    borderColor: "black",
+    borderColor: "grey",
     borderWidth: 1,
-    margin: 8,
-    borderRadius: 10,
+    padding: 8,
+    margin:8,
+    shadowRadius: 3,
+    backgroundColor: "white",
+  },
+  button: {
+    borderRadius: 15,
   }
 });
