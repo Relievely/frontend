@@ -8,12 +8,13 @@ import React from "react";
 
 export default function ReliefScreen({ navigation }: RootTabScreenProps<'Relief'>) {
   return (
-      <LinearGradient style={styles.cardContainer}
+      <LinearGradient style={styles.container}
                       colors={["#50d1ff", "#9a3aff"]} locations={[0, 1]} start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 1 }}>
         <SafeAreaView>
           <ScrollView>
-            <Text style={styles.title}>Feeling stressed? Try one of these activities:</Text>
+            <View style={styles.cardContainer}>
+            <Text style={styles.title1}>Feeling stressed? Try one of these activities:</Text>
             <View style={styles.view}>
               <View style={styles.box}>
 
@@ -42,7 +43,7 @@ export default function ReliefScreen({ navigation }: RootTabScreenProps<'Relief'
                 </TouchableHighlight>
               </View>
             </View>
-
+            </View>
           </ScrollView>
         </SafeAreaView>
       </LinearGradient>
@@ -50,21 +51,28 @@ export default function ReliefScreen({ navigation }: RootTabScreenProps<'Relief'
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    fontFamily: "Arial",
+  },
   cardContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "comfortaa",
+    fontFamily: "Arial",
     textAlign: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "600",
+    marginBottom: 15,
+    backgroundColor: '#ffff',
+    borderRadius: 10,
+    width: 365,
+    height: 200
   },
   text: {
     color: "black",
     backgroundColor: "white",
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 64,
     textAlign: "center",
   },
@@ -75,8 +83,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     backgroundColor: "white",
-    fontFamily: 'comfortaa',
-    fontSize: 16,
+    fontFamily: 'Arial',
   },
 
   box: {
@@ -89,5 +96,13 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 15,
-  }
+  },
+  title1: {
+    backgroundColor: "#aadde9",
+    height: 60,
+    borderRadius: 5,
+    fontSize: 20,
+    padding: 6,
+    color: "black",
+  },
 });

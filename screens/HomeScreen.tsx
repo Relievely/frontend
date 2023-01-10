@@ -39,9 +39,9 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
       <SafeAreaView>
         <ScrollView>
           <View style={styles.cardContainer}>
-            <Text style={styles.title1}>Meditation</Text>
-            <Text style={styles.emoji}>🧘‍</Text>
-            <Text style={styles.text}>Meditation is a great method to relieve stress because you only needthe thing you always carry with you: Yourself.This means you can do it anywhere. However, it’s easier for beginners to do it in a space that you have for yourself where you don’t get distracted easily.</Text>
+            <Text style={styles.title1}>Welcome user</Text>
+            <Text style={styles.emoji}>🐼</Text>
+            <Text style={styles.text}>This is the homepage, the place where you can find things like recommended activities, or view your summarized progress.</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -50,11 +50,17 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    fontFamily: "Arial",
+  },
   navbar: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "comfortaa",
   },
   emoji: {
     fontSize: 50,
@@ -63,7 +69,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#aadde9",
     height: 40,
     borderRadius: 5,
-    fontFamily: "comfortaa",
     fontSize: 20,
     padding: 6,
   },
@@ -86,11 +91,10 @@ const styles = StyleSheet.create({
   input: {
     color: "black",
     backgroundColor: "white",
-    fontFamily: "Arial"
   },
   text: {
-    fontSize: 12,
-    fontFamily: "comfortaa",
+    fontSize: 16,
+    padding:10,
   },
   card: {
     borderRadius: 6,
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffff',
     borderRadius: 10,
     width: 365,
-    height: 500,
+    height: 200
   },
 
 });

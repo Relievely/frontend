@@ -87,9 +87,9 @@ function BottomTabNavigator() {
                                 opacity: pressed ? 0.5 : 1
                             })}>
                             <FontAwesome
-                                name="info-circle"
+                                name="cog"
                                 size={25}
-                                color={Colors["light"].text}
+                                color={"white"}
                                 style={{marginRight: 15}}
                             />
                         </Pressable>

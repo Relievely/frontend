@@ -57,7 +57,7 @@ const cardStyles = StyleSheet.create({
         backgroundColor: "#AADDE9",
         color: "#3a3a3a",
         paddingVertical: 5,
-        fontWeight: "bold"
+        Weight: "bold"
     },
     text: {
         color: "#000"
