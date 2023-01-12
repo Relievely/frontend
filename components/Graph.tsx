@@ -101,6 +101,7 @@ export class Graph extends Component<{ style: any }> {
                     height={200}
                     yAxisLabel=""
                     yAxisSuffix=""
+                    formatYLabel={(v: string): string => MoodType[Number(v)]}
                     yAxisInterval={1} // optional, defaults to 1
                     chartConfig={{
                         backgroundColor: "#823dcc",
