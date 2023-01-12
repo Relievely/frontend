@@ -12,7 +12,7 @@ export default function JournalScreen({navigation}: RootTabScreenProps<'Journal'
         <LinearGradient style={styles.container}
                         colors={["#50d1ff", "#9a3aff"]} locations={[0, 1]} start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 1 }}>
-            <SafeAreaView style={{marginHorizontal: 100}}>
+            <SafeAreaView style={{marginHorizontal: 100, flex: 1}}>
                 <ScrollView style={styles.scrollContainer}>
                     <View style={styles.cardContainer}>
                         <MoodSelector style={cardStyles}/>
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         paddingHorizontal: 20,
+        width: "100%",
         fontFamily: "comfortaa",
     },
     scrollContainer: {

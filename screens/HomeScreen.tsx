@@ -31,7 +31,6 @@ import {LinearGradient} from "expo-linear-gradient";
 // ];
 
 export default function HomeScreen({navigation}: RootTabScreenProps<"Home">) {
-
     return (
         <LinearGradient style={styles.container}
                         colors={["#50d1ff", "#9a3aff"]} locations={[0, 1]} start={{x: 0, y: 0}}

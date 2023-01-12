@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View,} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {Card} from "react-native-elements";
+import {PersonaService, SettingsService} from "../constants/Services";
 
 export default class AnimalPicker extends Component {
 
@@ -16,7 +17,7 @@ export default class AnimalPicker extends Component {
 
     public getPersona = async () => {
         try {
-            const response = await fetch("http://localhost:50000/persona");
+            const response = await fetch( `${PersonaService}/persona`);
             const json = await response.json();
             console.log("Get Persona Data: ", json.data.value);
             if (json.data.value === "undefined") {
@@ -32,7 +33,7 @@ export default class AnimalPicker extends Component {
         console.log(persona)
         return new Promise((resolve, reject) => {
             if (persona) {
-                fetch(`http://localhost:50000/persona/${persona}`, {
+                fetch(`${SettingsService}/persona/${persona}`, {
                     method: "PUT"
                 })
                     .then((response) => response.json())

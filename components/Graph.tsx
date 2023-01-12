@@ -3,6 +3,7 @@ import {Dimensions,} from "react-native";
 import {LineChart,} from "react-native-chart-kit";
 import {MoodString, MoodType, ProgressItem, ProgressItemResponse} from "../constants/Interfaces";
 import {Card} from "react-native-elements";
+import {JournalService} from "../constants/Services";
 
 export class Graph extends Component<{ style: any }> {
 
@@ -17,7 +18,7 @@ export class Graph extends Component<{ style: any }> {
 
     public getProgress = async () => {
         try {
-            const response = await fetch("http://localhost:50003/progress");
+            const response = await fetch(`${JournalService}/progress`);
             const json = await response.json();
             // console.log("Get Graph Data: ", json.data);
             if (json.data === "undefined") {
