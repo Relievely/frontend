@@ -3,6 +3,7 @@ import {Dimensions,} from "react-native";
 import {LineChart,} from "react-native-chart-kit";
 import {MoodString, MoodType, ProgressItem, ProgressItemResponse} from "../constants/Interfaces";
 import {Card} from "react-native-elements";
+import {JournalService} from "../constants/Services";
 
 export class Graph extends Component<{ style: any }> {
 
@@ -17,7 +18,7 @@ export class Graph extends Component<{ style: any }> {
 
     public getProgress = async () => {
         try {
-            const response = await fetch("http://localhost:50003/progress");
+            const response = await fetch(`${JournalService}/progress`);
             const json = await response.json();
             // console.log("Get Graph Data: ", json.data);
             if (json.data === "undefined") {
@@ -67,7 +68,7 @@ export class Graph extends Component<{ style: any }> {
             };
         }
 
-
+        console.log("moodData: ", moodData);
         return moodData;
     }
 
@@ -76,20 +77,37 @@ export class Graph extends Component<{ style: any }> {
             <Card containerStyle={this.props.style.container}
                   wrapperStyle={this.props.style.wrapper}>
                 <Card.Title style={this.props.style.title}>
-                    Progress
+                    Your mood levels
                 </Card.Title>
                 <LineChart
-                    data={this.setData()}
+                    data={{ //works with setData(), but i hardcoded it to test without the backend running
+                        "labels": [
+                            "01/01",
+                            "01/02",
+                            "01/03",
+                            "01/04"
+                        ],
+                        "datasets": [
+                            {
+                                "data": [
+                                    2,
+                                    3,
+                                    4,
+                                    2
+                                ]
+                            }
+                        ]
+                    }}
                     width={Dimensions.get("window").width} // from react-native
                     height={200}
                     yAxisLabel=""
                     yAxisSuffix=""
-                    yAxisInterval={1} // optional, defaults to 1
                     formatYLabel={(v: string): string => MoodType[Number(v)]}
+                    yAxisInterval={1} // optional, defaults to 1
                     chartConfig={{
-                        backgroundColor: "#e26a00",
-                        backgroundGradientFrom: "#fb8c00",
-                        backgroundGradientTo: "#ffa726",
+                        backgroundColor: "#823dcc",
+                        backgroundGradientFrom: "#823dcc",
+                        backgroundGradientTo: "#823dcc",
                         decimalPlaces: 0, // optional, defaults to 2dp
                         color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                         labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -104,7 +122,7 @@ export class Graph extends Component<{ style: any }> {
                     }}
                     bezier
                     style={{ //this influences the box the graph is in
-                        marginVertical: 8,
+                        marginVertical: 4,
                         borderRadius: 16
                     }}
                 />

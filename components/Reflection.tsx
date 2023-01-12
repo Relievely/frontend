@@ -30,7 +30,7 @@ export default class Reflection extends Component<{ style: any }, { yesterdayMoo
     };
 
     public getActivityFromYesterday = async () => {
-        fetch(`${ActivityService}/activity/latest`)
+        fetch(`${ActivityService}/activity/previous/1`)
             .then(async (response) => {
                 const json = await response.json();
                 console.log("Get Latest Activity Data: ", json.data);
