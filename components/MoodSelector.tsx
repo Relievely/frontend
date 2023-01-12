@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
         marginHorizontal: "20%"
     },
     text: {
-        fontStyle: "italic",
         marginLeft: 10,
         padding: 4,
     }

@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, TouchableHighlight} from 'react-native';
 import {Text, View} from '../components/Themed';
 import {RootTabScreenProps} from '../types';
 import {LinearGradient} from "expo-linear-gradient";
@@ -6,26 +6,39 @@ import React from "react";
 
 export default function ReliefScreen({navigation}: RootTabScreenProps<'Relief'>) {
     return (
-        <LinearGradient style={styles.cardContainer}
-                        colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{x: .5, y: .2}}
+        <LinearGradient style={styles.container}
+                        colors={["#50d1ff", "#9a3aff"]} locations={[0, 1]} start={{x: 0, y: 0}}
                         end={{x: 1, y: 1}}>
             <SafeAreaView>
-                <ScrollView>
+                <ScrollView><View style={styles.cardContainer}>
+            <Text style={styles.title1}>Feeling stressed? Try one of these activities:</Text>
                     <View style={styles.view}>
                         <View style={styles.box}>
-                            <Text style={styles.text}>🧘‍♀️</Text>
-                            <Text style={styles.text}>meditate</Text>
+            <TouchableHighlight>
+                  <View style={styles.button}>                <Text style={styles.text}>🧘‍♀️</Text>
+                            <Text style={styles.text}>meditation</Text>
                         </View>
-                        <View style={styles.box}>
-                            <Text style={styles.text}>❔</Text>
+                        </TouchableHighlight>
+
+              </View>
+              <View style={styles.box}>
+                            <TouchableHighlight>
+                  <View style={styles.button}>
+                <Text style={styles.text}>❔</Text>
                             <Text style={styles.text}>questions</Text>
                         </View>
-                        <View style={styles.box}>
+                        </TouchableHighlight>
+              </View>
+              <View style={styles.box}>
+                <TouchableHighlight>
+                  <View style={styles.button}>
                             <Text style={styles.text}>🚶‍♀️</Text>
-                            <Text style={styles.text}>walk</Text>
+                            <Text style={styles.text}>walking</Text>
                         </View>
-                    </View>
-
+                    </TouchableHighlight>
+              </View>
+            </View>
+            </View>
                 </ScrollView>
             </SafeAreaView>
         </LinearGradient>
@@ -33,41 +46,56 @@ export default function ReliefScreen({navigation}: RootTabScreenProps<'Relief'>)
 }
 
 const styles = StyleSheet.create({
-    cardContainer: {
+    container: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "comfortaa",
+        fontFamily: "Arial",
     },
-    title: {
-        fontSize: 20,
-        fontWeight: "bold"
-    },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: "80%"
+    cardContainer: {
+        flex: 1,
+    alignItems: "center",
+        justifyContent: "center",
+    fontFamily: "Arial",
+    textAlign: "center",
+        marginBottom: 15,
+        backgroundColor: '#ffff',
+    borderRadius: 10,
+        width: 365,
+    height: 200
     },
     text: {
         color: "black",
         backgroundColor: "white",
-        fontSize: 42,
-        lineHeight: 84,
+        fontSize: 20,
+        lineHeight: 64,
         textAlign: "center",
-        fontFamily: "comfortaa",
-    },
-    view: {
+        },
+  view: {
+    borderRadius: 25,
+    width: '100%',
         display: "flex",
         flexDirection: "row",
         padding: 10,
         backgroundColor: "white",
-        borderRadius: 10,
-        marginHorizontal: 15,
-    },
+        fontFamily: 'Arial',
+        },
+
     box: {
-        borderColor: "black",
-        borderWidth: 1,
-        margin: 8,
-        borderRadius: 10,
-    }
+        borderColor: "grey",
+        borderWidth: 1,padding: 8,
+        margin: 8,shadowRadius: 3,
+    backgroundColor: "white",
+  },
+  button: {
+        borderRadius: 15,
+  },
+  title1: {
+    backgroundColor: "#aadde9",
+    height: 60,
+    borderRadius: 5,
+    fontSize: 20,
+    padding: 6,
+    color: "black",
+    },
 });
