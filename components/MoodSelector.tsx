@@ -24,7 +24,7 @@ export default class MoodSelector extends Component<{ style: any }> {
                     <MoodButton value={"😊"}/>
                 </View>
                 <View style={styles.inputRow}>
-                    <Input autoCompleteType={"true"} style={this.props.style.input}
+                    <Input style={this.props.style.input}
                            placeholder="Note"
                     ></Input>
                     <Button title={"Submit"} type={"outline"}/>
@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
         marginHorizontal: "20%"
     },
     text: {
-        fontStyle: "italic",
         marginLeft: 10,
         padding: 4,
     }

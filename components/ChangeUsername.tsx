@@ -1,12 +1,22 @@
 import React, {Component} from "react";
 import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
+import {SettingsService} from "../constants/Services";
 
 export class ChangeUsername extends Component {
     public usernameValue: string = "";
 
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            usernameData: "Guest"
+        };
+
+        this.getUsername();
+    }
+
     public getUsername = async () => {
         try {
-            const response = await fetch("http://localhost:50000/username");
+            const response = await fetch(`${SettingsService}/username`);
             const json = await response.json();
             console.log("Get Username Data: ", json.data.value);
             if (json.data.value === "undefined") {
@@ -21,7 +31,7 @@ export class ChangeUsername extends Component {
     public sendUsername = async (username: string) => {
         return new Promise((resolve, reject) => {
             if (username) {
-                fetch(`http://localhost:50000/username/${username}`, {
+                fetch(`${SettingsService}/username/${username}`, {
                     method: "PUT"
                 })
                     .then((response) => response.json())
@@ -39,15 +49,6 @@ export class ChangeUsername extends Component {
             }
         });
     };
-
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            usernameData: "Guest"
-        };
-
-        this.getUsername();
-    }
 
     render() {
         return (

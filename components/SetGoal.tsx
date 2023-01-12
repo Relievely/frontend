@@ -89,7 +89,7 @@ export default class SetGoal extends Component<{ style: any }, {
                             value={this.state.reminderSwitch}
                             onValueChange={(value: boolean) => this.toggleSwitch(value)}
                         />
-                        <Text >Do you want to be reminded?</Text>
+                        <Text>Do you want to be reminded?</Text>
                     </View>
                     {this.state.reminderSwitch && <View style={{...styles.rowColumn}}>
                         <Picker selectedValue={this.state.selectedStep}

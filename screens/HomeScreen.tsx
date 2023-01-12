@@ -30,78 +30,83 @@ import {LinearGradient} from "expo-linear-gradient";
 //   },
 // ];
 
-export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
-
-  return (
-    <LinearGradient style={styles.navbar}
-                    colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{ x: .5, y: .2 }}
-                    end={{ x: 1, y: 1 }}>
-      <SafeAreaView>
-        <ScrollView>
-          <View style={styles.cardContainer}>
-            <Text style={styles.title1}>Mediation</Text>
-            <Text style={styles.emoji}>🧘‍</Text>
-            <Text style={styles.text}>Meditation is a great method to relieve stress because you only needthe thing you always carry with you: Yourself.This means you can do it anywhere. However, it’s easier for beginners to do it in a space that you have for yourself where you don’t get distracted easily.</Text>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </LinearGradient>
-  );
+export default function HomeScreen({navigation}: RootTabScreenProps<"Home">) {
+    return (
+        <LinearGradient style={styles.container}
+                        colors={["#50d1ff", "#9a3aff"]} locations={[0, 1]} start={{x: 0, y: 0}}
+                        end={{x: 1, y: 1}}>
+            <SafeAreaView>
+                <ScrollView>
+                    <View style={styles.cardContainer}>
+                        <Text style={styles.title1}>Welcome user</Text>
+                        <Text style={styles.emoji}>🐼</Text>
+                        <Text style={styles.text}>This is the homepage, the place where you can find things like recommended activities, or view your summarized progress.</Text>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        </LinearGradient>
+    );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 20,
+        fontFamily: "Arial",
+  },
   navbar: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "comfortaa",
-  },
-  emoji: {
-    fontSize: 50,
-  },
-  title1: {
-    backgroundColor: "#aadde9",
-    height: 40,
-    borderRadius: 5,
-    fontFamily: "comfortaa",
-    fontSize: 20,
-    padding: 6,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold"
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%"
-  },
-  paragraph: {},
-  button: {},
-  image: {
-    flex: 1,
-    justifyContent: "center"
+    },
+    emoji: {
+        fontSize: 50,
+    },
+    title1: {
+        backgroundColor: "#aadde9",
+        height: 40,
+        borderRadius: 5,
 
-  },
-  input: {
-    color: "black",
-    backgroundColor: "white",
-    fontFamily: "Arial"
-  },
-  text: {
-    fontSize: 12,
-    fontFamily: "comfortaa",
-  },
-  card: {
-    borderRadius: 6,
-  },
-  cardContainer: {
-    textAlign: "center",
-    marginBottom: 15,
-    backgroundColor: '#ffff',
-    borderRadius: 10,
-    width: 365,
-    height: 500,
-  },
+        fontSize: 20,
+        padding: 6,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: "bold"
+    },
+    separator: {
+        marginVertical: 30,
+        height: 1,
+        width: "80%"
+    },
+    paragraph: {},
+    button: {},
+    image: {
+        flex: 1,
+        justifyContent: "center"
+
+    },
+    input: {
+        color: "black",
+        backgroundColor: "white",
+
+    },
+    text: {
+        fontSize: 16,
+        padding:10,
+    },
+    card: {
+        borderRadius: 6,
+    },
+    cardContainer: {
+        textAlign: "center",
+        marginBottom: 15,
+        backgroundColor: '#ffff',
+        borderRadius: 10,
+        width: 365,
+        height: 200
+    },
 
 });

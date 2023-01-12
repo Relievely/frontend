@@ -6,7 +6,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest",
+    "test-all": "jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/express": "^4.17.15",
     "@types/react": "^18.0.24",
     "@types/react-native": "^0.70.8",
     "@types/react-native-calendar-picker": "^7.0.2",

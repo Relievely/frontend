@@ -10,9 +10,9 @@ import MoodSelector from "../components/MoodSelector";
 export default function JournalScreen({navigation}: RootTabScreenProps<'Journal'>) {
     return (
         <LinearGradient style={styles.container}
-                        colors={["#0085A6", "#1C39AE", "#5106B5"]} locations={[0.2, 0.5, 0.8]} start={{x: .5, y: .2}}
-                        end={{x: 1, y: 1}}>
-            <SafeAreaView style={{marginHorizontal: 100}}>
+                        colors={["#50d1ff", "#9a3aff"]} locations={[0, 1]} start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}>
+            <SafeAreaView style={{marginHorizontal: 100, flex: 1}}>
                 <ScrollView style={styles.scrollContainer}>
                     <View style={styles.cardContainer}>
                         <MoodSelector style={cardStyles}/>
@@ -57,7 +57,7 @@ const cardStyles = StyleSheet.create({
         backgroundColor: "#AADDE9",
         color: "#3a3a3a",
         paddingVertical: 5,
-        fontWeight: "bold"
+        Weight: "bold"
     },
     text: {
         color: "#000"
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         paddingHorizontal: 20,
+        width: "100%",
         fontFamily: "comfortaa",
     },
     scrollContainer: {

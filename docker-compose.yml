@@ -1,0 +1,46 @@
+
+version: '3.8'
+
+services:
+  activity-service:
+    image: ghcr.io/relievely/activities:main
+    ports:
+      - "50010:3000"
+    environment:
+      - SERVICE_NAME=activity
+      - PORT=3000
+  journal-service:
+    image: ghcr.io/relievely/journal:main
+    ports:
+      - "50011:3000"
+    environment:
+      - SERVICE_NAME=journal
+      - PORT=3000
+  settings-service:
+    image: ghcr.io/relievely/settings:main
+    ports:
+      - "50012:3000"
+    environment:
+      - SERVICE_NAME=settings
+      - PORT=3000
+  wiki-service:
+    image: ghcr.io/relievely/wiki:main
+    ports:
+      - "50013:3000"
+    environment:
+      - SERVICE_NAME=wiki
+      - PORT=3000
+  persona-service:
+    image: ghcr.io/relievely/persona:main
+    ports:
+      - "50014:3000"
+    environment:
+      - SERVICE_NAME=persona
+      - PORT=3000
+  goals-service:
+    image: ghcr.io/relievely/goals:main
+    ports:
+      - "50015:3000"
+    environment:
+      - SERVICE_NAME=goals
+      - PORT=3000
