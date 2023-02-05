@@ -39,7 +39,7 @@ export default function HomeScreen({navigation}: RootTabScreenProps<"Home">) {
                 <ScrollView>
                     <View style={styles.cardContainer}>
                         <Text style={styles.title1}>Welcome user</Text>
-                        <Text style={styles.emoji}>🎇</Text>
+                        <Text style={styles.emoji}>✨</Text>
                         <Text style={styles.text}>This is the homepage, the place where you can find things like recommended activities, or view your summarized progress.</Text>
                     </View>
                 </ScrollView>
